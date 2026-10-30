@@ -33,6 +33,7 @@ calculadora.py
  ├── subtracao(a, b)       -> Retorna a diferença (a - b)
  ├── multiplicacao(a, b)   -> Retorna o produto (a * b)
  ├── divisao(a, b)         -> Retorna o quociente (a / b) com verificação de zero
+ ├── porcentagem(a, b)     -> Retorna a porcentagem ((a * b) / 100)
  ├── exibir_menu()         -> Renderiza o menu no terminal
  ├── obter_numero(msg)     -> Valida entrada com try/except ValueError
  └── main()                -> Loop contínuo (while True) e despacho condicional
@@ -60,23 +61,23 @@ A seleção da função ocorre por meio de uma **estrutura de despacho condicion
               ▼ (Inválida)                          ▼ (Válida)
     ┌───────────────────┐                  ┌─────────────────┐
     │ if opcao not in   │                  │  Pede num1 e    │
-    │   ("1","2","3","4")                  │  num2 ao usuário│
-    │ continue (reinicia)                  └────────┬────────┘
+    │("1","2","3","4","5")                 │  num2 ao usuário│
+    │continue (reinicia)│                  └────────┬────────┘
     └───────────────────┘                           │
                                                     ▼
                              ┌──────────────────────────────────────────────┐
                              │    Avaliação das Condições Sequenciais       │
                              └──────────────────────┬───────────────────────┘
                                                     │
-                 ┌───────────────┬──────────────────┼───────────────┬───────────────┐
-                 ▼               ▼                  ▼               ▼               ▼
-           opcao == "1"    opcao == "2"       opcao == "3"    opcao == "4"    opcao == "5"
-                 │               │                  │               │               │
-                 ▼               ▼                  ▼               ▼               ▼
-              adicao()       subtracao()      multiplicacao()    divisao()        break
-                 │               │                  │               │          (encerra)
-                 │               │                  │        (se b==0: raise)
-                 └───────────────┴──────────────────┼───────────────┘
+                 ┌──────────────┬──────────────┬────┴─────────┬──────────────┬──────────────┐
+                 ▼              ▼              ▼              ▼              ▼              ▼
+           opcao == "1"   opcao == "2"   opcao == "3"   opcao == "4"   opcao == "5"   opcao == "6"
+                 │              │              │              │              │              │
+                 ▼              ▼              ▼              ▼              ▼              ▼
+              adicao()      subtracao()   multiplicacao()  divisao()    porcentagem()     break
+                 │              │              │              │              │          (encerra)
+                 │              │              │       (se b==0: raise)      │
+                 └──────────────┴──────────────┼──────────────┴──────────────┘
                                                     │
                                                     ▼
                                      ┌─────────────────────────────┐
@@ -88,21 +89,22 @@ A seleção da função ocorre por meio de uma **estrutura de despacho condicion
 
 1. **Leitura da Escolha (`opcao`)**:
    ```python
-   opcao = input("Escolha uma opção (1-5): ").strip()
+   opcao = input("Escolha uma opção (1-6): ").strip()
    ```
    O Python lê a opção como texto (`str`) para evitar erros caso o usuário digite letras.
 
-2. **Verificação de Saída (`opcao == "5"`)**:
-   Se o usuário seleciona a opção 5, o comando `break` interrompe o laço `while True` imediatamente.
+2. **Verificação de Saída (`opcao == "6"`)**:
+   Se o usuário seleciona a opção 6, o comando `break` interrompe o laço `while True` imediatamente.
 
 3. **Validação de Entrada (`not in`)**:
-   Caso o valor não seja `"1"`, `"2"`, `"3"` ou `"4"`, o programa emite um alerta e usa `continue` para voltar ao início do loop sem executar nenhuma operação matemática.
+   Caso o valor não seja `"1"`, `"2"`, `"3"`, `"4"` ou `"5"`, o programa emite um alerta e usa `continue` para voltar ao início do loop sem executar nenhuma operação matemática.
 
 4. **Despacho Sequencial (`if / elif`)**:
    - `opcao == "1"` ➔ invoca `adicao(num1, num2)` e atribui `operador = "+"`
    - `opcao == "2"` ➔ invoca `subtracao(num1, num2)` e atribui `operador = "-"`
    - `opcao == "3"` ➔ invoca `multiplicacao(num1, num2)` e atribui `operador = "*"`
    - `opcao == "4"` ➔ invoca `divisao(num1, num2)` e atribui `operador = "/"`
+   - `opcao == "5"` ➔ invoca `porcentagem(num1, num2)` e atribui `operador = "%"`
 
 5. **Segunda Decisão Interna (Proteção na Divisão)**:
    Dentro da função `divisao(a, b)`, é executada uma verificação de proteção:
@@ -122,7 +124,7 @@ A seleção da função ocorre por meio de uma **estrutura de despacho condicion
 | **`num1`** | `float` | Local de `main()` | Armazena o primeiro número real fornecido pelo usuário. |
 | **`num2`** | `float` | Local de `main()` | Armazena o segundo número real fornecido (divisor, subtraendo ou multiplicador). |
 | **`resultado`** | `float` | Local de `main()` | Guarda o valor retornado (`return`) pela função matemática executada. |
-| **`operador`** | `str` | Local de `main()` | Guarda o símbolo visual (`"+"`, `"-"`, `"*"` ou `"/"`) para exibição amigável. |
+| **`operador`** | `str` | Local de `main()` | Guarda o símbolo visual (`"+"`, `"-"`, `"*"`, `"/"` ou `"%"` ) para exibição amigável. |
 | **`a`** | `float` | Parâmetro das funções | Parâmetro formal que recebe o valor de `num1` dentro do escopo da função. |
 | **`b`** | `float` | Parâmetro das funções | Parâmetro formal que recebe o valor de `num2` dentro do escopo da função. |
 | **`erro`** | `ZeroDivisionError` | Bloco `except` | Objeto de exceção instanciado quando ocorre tentativa de divisão por zero. |
