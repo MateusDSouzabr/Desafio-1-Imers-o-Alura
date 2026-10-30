@@ -1,6 +1,6 @@
 # 🧮 Calculadora Python — 4 Operações Básicas
 
-Uma aplicação educacional e prática desenvolvida em **Python 3** implementando as quatro operações aritméticas fundamentais (**Adição**, **Subtração**, **Multiplicação** e **Divisão**), com tratamento de erros, validações de entrada, múltiplos paradigmas de código e uma interface gráfica interativa com terminal embutido.
+Uma aplicação educacional e prática desenvolvida em **Python 3** implementando as quatro operações aritméticas fundamentais (**Adição**, **Subtração**, **Multiplicação**, **Divisão** e **Porcentagem**), com tratamento de erros, validações de entrada, múltiplos paradigmas de código e uma interface gráfica interativa com terminal embutido.
 
 ---
 
